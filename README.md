@@ -1,6 +1,6 @@
 # 漫画制作キット
 
-Codexと一緒に漫画を企画し、字コンテ・ネーム・作画・PNGでの確認を進めるための知識、7つのスキル、作品テンプレートです。
+Codexと一緒に漫画を企画し、字コンテ・ネーム・作画・PNGでの確認を進めるための知識、8つのスキル、作品テンプレートです。
 
 **このフォルダは制作キットの保守・配布用です。漫画は原則ここで描かず、`scripts/New-MangaProject.ps1` でキット外に個別プロジェクトを作成し、そちらでCodexを開き直して制作します。** `templates/manga-project/` は原本なので、直接作品を書き込まないでください。
 
@@ -12,7 +12,9 @@ Codexと一緒に漫画を企画し、字コンテ・ネーム・作画・PNGで
 
 - 読者体験と物語を設計し、字コンテからネームへ具体化する。
 - 物語、没入、映画的演出、読みやすさ、用語、キャラクターの一貫性をレビューする。
+- 時代設定・ジャンル・読者層に合わせて画風、白黒/カラー、線、トーン、背景密度を決め、複数ページでStyle Lockを維持する。
 - 利用可能な画像生成・編集環境を使って作画し、PNGで確認・修正する。
+- 読者年齢に応じて、必要な漢字・固有名詞・特殊な読みへルビを付ける方針を使う。
 - PNGの修正がなくなったら、作成指示のあるPSDを作成・検証して引き渡す。
 - 動画で演出を試す依頼がある場合に、ローカルComfyUIの生成・回収と動画編集を補助する。
 
@@ -27,7 +29,8 @@ flowchart TD
     B --> C[字コンテ]
     C --> D[ネーム・比較・通読]
     D --> E[統合改稿]
-    E --> F[作画・文字配置]
+    E --> S[画風・色・Style Lockを決定]
+    S --> F[作画・文字配置]
     F --> G[PNGプレビューを提示]
     G --> H{修正はあるか}
     H -->|ある| I[修正して再提示]
@@ -42,7 +45,7 @@ flowchart TD
     L --> N[人間がCLIP STUDIO PAINTで仕上げ・公開]
 ```
 
-工程ごとの成果物と確認点は[制作プロセス](docs/knowledge/manga/08-workflow-review.md)、知識と雛形は[ノウハウ一覧](templates/manga-project/docs/MANGA-KNOWHOW.md)にまとめています。「このフォルダで何ができるか」の説明も、個別プロジェクトを作って開き直す流れから始めます。
+工程ごとの成果物と確認点は[制作プロセス](docs/knowledge/manga/08-workflow-review.md)、画風の決定は[アートディレクション](docs/knowledge/art-direction.md)、ルビは[ルビ・ふりがなの方針](docs/knowledge/ruby-policy.md)、知識と雛形は[ノウハウ一覧](templates/manga-project/docs/MANGA-KNOWHOW.md)にまとめています。「このフォルダで何ができるか」の説明も、個別プロジェクトを作って開き直す流れから始めます。
 
 ## はじめ方
 
@@ -81,6 +84,8 @@ PSD作成の指示がなければ、PNGでの修正確認後に作るか質問�
 
 - [文書の入口](docs/README.md)
 - [構成と配布](docs/architecture.md)
+- [アートディレクション](docs/knowledge/art-direction.md)
+- [ルビ・ふりがなの方針](docs/knowledge/ruby-policy.md)
 - [出典と取得日](docs/SOURCES.md)・[映画・脚本資料の参照範囲](docs/knowledge/manga-sources.md)
 - [このフォルダからコミットする前の検証](docs/publication.md)
 - [利用条件と第三者資料](docs/RIGHTS.md)
