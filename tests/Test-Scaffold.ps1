@@ -33,7 +33,10 @@ Check ($creationText.Contains($projectRoot) -and $creationText.Contains('この�
 $project = Get-Content -LiteralPath (Join-Path $projectRoot 'project.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 Check ($project.name -ceq $japaneseName) 'Japanese project name survives JSON round trip'
 Check ((Split-Path $projectRoot -Parent) -eq $testRoot) 'Project is a direct child of the selected parent'
-Check (@(Get-ChildItem -LiteralPath (Join-Path $projectRoot '.agents\skills') -Directory).Count -eq 7) 'Seven discoverable skills are included'
+$expectedSkillCount = @(Get-ChildItem -LiteralPath (Join-Path $root 'skills') -Directory).Count
+Check (@(Get-ChildItem -LiteralPath (Join-Path $projectRoot '.agents\skills') -Directory).Count -eq $expectedSkillCount) 'All discoverable skills are included'
+Check ((Test-Path -LiteralPath (Join-Path $projectRoot '.agents\skills\manga-script-writing\SKILL.md')) -and
+       (Test-Path -LiteralPath (Join-Path $projectRoot 'docs\knowledge\manga\10-natural-japanese-dialogue.md'))) 'Script-writing skill and natural Japanese manga guidance are included'
 Check ((Test-Path -LiteralPath (Join-Path $projectRoot 'docs\knowledge\story-structure.md')) -and
        (Test-Path -LiteralPath (Join-Path $projectRoot 'docs\knowledge\japanese-manga-readability.md'))) 'Knowledge is included'
 Check ((Get-FileHash -LiteralPath (Join-Path $projectRoot 'docs\toolkit-license.txt')).Hash -eq
