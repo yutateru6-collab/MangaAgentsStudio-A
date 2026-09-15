@@ -1,6 +1,6 @@
 # 漫画制作キット
 
-Codexと一緒に漫画を企画し、字コンテ・ネーム・作画・PNGでの確認を進めるための知識、8つのスキル、作品テンプレートです。
+Codexと一緒に漫画を企画し、脚本・字コンテ・ネーム・作画・PNGでの確認を進めるための知識、9つのスキル、作品テンプレートです。
 
 **このフォルダは制作キットの保守・配布用です。漫画は原則ここで描かず、`scripts/New-MangaProject.ps1` でキット外に個別プロジェクトを作成し、そちらでCodexを開き直して制作します。** `templates/manga-project/` は原本なので、直接作品を書き込まないでください。
 
@@ -10,7 +10,10 @@ Codexと一緒に漫画を企画し、字コンテ・ネーム・作画・PNGで
 
 個別プロジェクトを開いた後、次の制作を進められます。
 
-- 読者体験と物語を設計し、字コンテからネームへ具体化する。
+- 読者体験と物語を設計し、脚本・字コンテからネームへ具体化する。
+- `manga-script-writing` で、人物の年齢・関係・感情に合う自然な日本語へ整え、画像生成前に確定セリフをロックする。
+- 日本向けページ漫画では、右上開始・右→左・上→下の読み順を脚本・ネーム・画像生成・PNGレビューまで一貫して固定する。
+- ユーザーが白黒を明示しない限り、フルカラーを既定にし、画像生成時も毎ページ COLOR LOCK を明示する。
 - 物語、没入、映画的演出、読みやすさ、用語、キャラクターの一貫性をレビューする。
 - 時代設定・ジャンル・読者層に合わせて画風、白黒/カラー、線、トーン、背景密度を決め、複数ページでStyle Lockを維持する。
 - 利用可能な画像生成・編集環境を使って作画し、PNGで確認・修正する。
@@ -26,13 +29,14 @@ flowchart TD
     Q --> R[ユーザーが作品フォルダでCodexを開き直す]
     R --> A
     A[企画・読者体験] --> B[人物・場面・情報の順序]
-    B --> C[字コンテ]
-    C --> D[ネーム・比較・通読]
+    B --> C[脚本・字コンテ<br/>自然日本語パス]
+    C --> C2[確定セリフをDIALOGUE.mdへロック]
+    C2 --> D[右→左のネーム・比較・通読]
     D --> E[統合改稿]
-    E --> S[画風・色・Style Lockを決定]
-    S --> F[作画・文字配置]
+    E --> S[画風・フルカラー・Style Lockを決定]
+    S --> F[READ ORDER / COLOR / DIALOGUE LOCKで作画・文字配置]
     F --> G[PNGプレビューを提示]
-    G --> H{修正はあるか}
+    G --> H{読み順・色・文字・人物に修正はあるか}
     H -->|ある| I[修正して再提示]
     I --> G
     H -->|確認待ち| O[PNGの確認回答を待つ]
@@ -45,7 +49,7 @@ flowchart TD
     L --> N[人間がCLIP STUDIO PAINTで仕上げ・公開]
 ```
 
-工程ごとの成果物と確認点は[制作プロセス](docs/knowledge/manga/08-workflow-review.md)、画風の決定は[アートディレクション](docs/knowledge/art-direction.md)、ルビは[ルビ・ふりがなの方針](docs/knowledge/ruby-policy.md)、知識と雛形は[ノウハウ一覧](templates/manga-project/docs/MANGA-KNOWHOW.md)にまとめています。「このフォルダで何ができるか」の説明も、個別プロジェクトを作って開き直す流れから始めます。
+工程ごとの成果物と確認点は[制作プロセス](docs/knowledge/manga/08-workflow-review.md)、自然な日本語と人物会話は[漫画の自然な日本語・セリフ](docs/knowledge/manga/10-natural-japanese-dialogue.md)、画風の決定は[アートディレクション](docs/knowledge/art-direction.md)、ルビは[ルビ・ふりがなの方針](docs/knowledge/ruby-policy.md)、知識と雛形は[ノウハウ一覧](templates/manga-project/docs/MANGA-KNOWHOW.md)にまとめています。「このフォルダで何ができるか」の説明も、個別プロジェクトを作って開き直す流れから始めます。
 
 ## はじめ方
 
@@ -83,7 +87,8 @@ Codexは作成完了の案内時に、**ChatGPTのWindows用・Mac用アプリ�
 PSD作成の指示がなければ、PNGでの修正確認後に作るか質問して回答を待ちます。既に指示がある場合は再確認しません。CBZは明示指定時だけ作成します。フィードバックは「残してほしい」と依頼された場合だけ記録し、記録するかの確認はしません。
 
 - [文書の入口](docs/README.md)
-- [構成と配布](docs/architecture.md)
+- [制作プロセス](docs/knowledge/manga/08-workflow-review.md)
+- [漫画の自然な日本語・セリフ](docs/knowledge/manga/10-natural-japanese-dialogue.md)
 - [アートディレクション](docs/knowledge/art-direction.md)
 - [ルビ・ふりがなの方針](docs/knowledge/ruby-policy.md)
 - [出典と取得日](docs/SOURCES.md)・[映画・脚本資料の参照範囲](docs/knowledge/manga-sources.md)
