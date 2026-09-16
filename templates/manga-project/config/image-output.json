@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "lastVerified": "2026-09-17",
+  "educationalMangaFinal": {
+    "preferredModel": "gpt-image-2.5-sunburst",
+    "verifiedSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+    "verifyAvailabilityAtRuntime": true,
+    "size": "2400x3392",
+    "quality": "max",
+    "outputFormat": "png",
+    "nativeGenerationPreferred": true,
+    "experimentalHighResolution": true,
+    "textAccuracy": {
+      "sourceOfTruth": "docs/production/DIALOGUE.md",
+      "requireExactReview": true,
+      "preferTextOverlayAfterArt": true
+    },
+    "pdf": {
+      "allowDownsampling": false,
+      "allowJpegConversion": false,
+      "allowLossyRecompression": false,
+      "requirePageOrderVerification": true,
+      "requirePixelDimensionVerification": true,
+      "preferDecodedPixelEqualityCheck": true
+    }
+  },
+  "fallbacks": [
+    {
+      "size": "2048x2896",
+      "quality": "max",
+      "note": "縦長比率を維持した高解像度候補。実行時にAPI受理を確認する。"
+    },
+    {
+      "size": "1440x2032",
+      "quality": "max",
+      "note": "高解像度指定が不安定な場合の比率維持フォールバック。"
+    }
+  ],
+  "upscale": {
+    "default": "off",
+    "preferredAnimeModel": "RealESRGAN_x4plus_anime_6B",
+    "preferNativeGeneration": true,
+    "textHeavyPages": "upscale-art-before-text-overlay",
+    "faceEnhanceDefault": false,
+    "requireABTestBeforeBatch": true
+  },
+  "reporting": {
+    "recordActualPixelDimensions": true,
+    "recordRequestedPixelDimensions": true,
+    "recordModelAndQuality": true,
+    "doNotCallUpscaledOutputNative2KOr4K": true
+  }
+}
